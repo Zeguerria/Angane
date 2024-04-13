@@ -30,12 +30,22 @@ class ParametreSeeder extends Seeder
 			["id"=> 16, "code" => "G8",  "libelle" => "OGOOUE MARITIME", "desc" => "", "parent_id" => 1, "type_parametre_id" => 2],
 			["id"=> 17, "code" => "G9",  "libelle" => "WOLEU NTEM", "desc" => "", "parent_id" => 1, "type_parametre_id" => 2],
 			// les arrondissements
-			["id"=> 18, "code" => "ARR1",  "libelle" => "1ER ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
-			["id"=> 19, "code" => "ARR2",  "libelle" => "2EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
-			["id"=> 20, "code" => "ARR3",  "libelle" => "3EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
-			["id"=> 21, "code" => "ARR4",  "libelle" => "4EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
-			["id"=> 22, "code" => "ARR5",  "libelle" => "5EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
-			["id"=> 23, "code" => "ARR6",  "libelle" => "6EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+            // TRAVAIL DE GRAND EDOU DEBUT
+                // ["id"=> 18, "code" => "ARR1",  "libelle" => "1ER ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+			    // ["id"=> 19, "code" => "ARR2",  "libelle" => "2EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+			    // ["id"=> 20, "code" => "ARR3",  "libelle" => "3EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+			    // ["id"=> 21, "code" => "ARR4",  "libelle" => "4EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+			    // ["id"=> 22, "code" => "ARR5",  "libelle" => "5EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+			    // ["id"=> 23, "code" => "ARR6",  "libelle" => "6EME ARRONDISSEMENT", "desc" => "", "parent_id" => 1, "type_parametre_id" => 4],
+            // TRAVAIL DE GRAND EDOU FIN
+            // MES MODIFICATION DEBUT
+                ["id"=> 18, "code" => "ARR1",  "libelle" => "1ER ARRONDISSEMENT", "desc" => "", "parent_id" => 103, "type_parametre_id" => 4],
+                ["id"=> 19, "code" => "ARR2",  "libelle" => "2EME ARRONDISSEMENT", "desc" => "", "parent_id" => 103, "type_parametre_id" => 4],
+                ["id"=> 20, "code" => "ARR3",  "libelle" => "3EME ARRONDISSEMENT", "desc" => "", "parent_id" => 103, "type_parametre_id" => 4],
+                ["id"=> 21, "code" => "ARR4",  "libelle" => "4EME ARRONDISSEMENT", "desc" => "", "parent_id" => 103, "type_parametre_id" => 4],
+                ["id"=> 22, "code" => "ARR5",  "libelle" => "5EME ARRONDISSEMENT", "desc" => "", "parent_id" => 103, "type_parametre_id" => 4],
+                ["id"=> 23, "code" => "ARR6",  "libelle" => "6EME ARRONDISSEMENT", "desc" => "", "parent_id" => 103, "type_parametre_id" => 4],
+            // MES MODIFICATION FIN
 			// communes des provinces
 			["id"=> 24, "code" => "LBV",  "libelle" => "LIBREVILLE", "desc" => "", "parent_id" => 9, "type_parametre_id" => 3],
 			["id"=> 25, "code" => "KGO",  "libelle" => "KANGO", "desc" => "", "parent_id" => 9, "type_parametre_id" => 3],

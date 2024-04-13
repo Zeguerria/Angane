@@ -95,7 +95,7 @@ Route::middleware([
     // gestion des types de parametres fin
     // GESTION DES PROVINCES DEBUT
         // ROUTES DEBUTS
-            Route::get('/Provinces','App\Http\Controllers\ParametreController@indexProvince')->name('Parametres');
+            Route::get('/Provinces','App\Http\Controllers\ParametreController@indexProvince')->name('Provinces');
             Route::get('ProvinceCorbeilles', 'App\Http\Controllers\ParametreController@indexCorbeilleProvince');
         // ROUTES FIN
         // CREUD DEBUT
@@ -114,7 +114,7 @@ Route::middleware([
 
     // GESTION DES COMMUNES DEBUT
         // ROUTES DEBUT
-            Route::get('/Communes','App\Http\Controllers\ParametreController@indexCommune')->name('Parametres');
+            Route::get('/Communes','App\Http\Controllers\ParametreController@indexCommune')->name('Communes');
             Route::get('CommuneCorbeilles', 'App\Http\Controllers\ParametreController@indexCorbeilleCommune');
         // ROUTES FIN
         // CREUD DEBUT
@@ -130,6 +130,24 @@ Route::middleware([
             Route::get('recupAllcommune', 'App\Http\Controllers\ParametreController@recupTousCorbeilleCommunes')->name('recupAlcommune');
         // AUTRES FIN
     // GESTION DES COMMUNES FIN
+    // GESTION DES ARRONDISSEMENTS DEBUT
+        // ROUTES DEBUT
+            Route::get('/Arrondissements','App\Http\Controllers\ParametreController@indexArrondissement')->name('Arrondissements');
+            Route::get('ArrondissementCorbeilles', 'App\Http\Controllers\ParametreController@indexCorbeilleArrondissement')->name('ArrondissementCorbeilles');
+        // ROUTES FIN
+        // CREUD DEBUT
+            Route::post('ajouterParametreArrondissement','App\Http\Controllers\ParametreController@storeArrondissement')->name('ajouterParametreArrondissement');
+            Route::post('modifierParametreArrondissement','App\Http\Controllers\ParametreController@updateArrondissement')->name('modifierParametreArrondissement');
+            Route::post('supprimerParametreArrondissement','App\Http\Controllers\ParametreController@destroyArrondissement')->name('supprimerParametreArrondissement');
+        // CREUD FIN
+        // AUTRES DEBUT
+            Route::post('corbeilleParametreArrondissement', 'App\Http\Controllers\ParametreController@corbeilleArrondissement')->name('corbeilleParametreArrondissement');
+            Route::post('recupParametreArrondissement', 'App\Http\Controllers\ParametreController@recupTousCorbeilleArrondissement')->name('recupParametreArrondissement');
+            Route::get('deleteAllarrondissement', 'App\Http\Controllers\ParametreController@destroyTousArrondissement')->name('deleteAllarrondissement');
+            Route::get('corbeilleAllarrondissement', 'App\Http\Controllers\ParametreController@corbeille_allArrondissement')->name('corbeilleAllarrondissement');
+            Route::get('recupAllarrondissement', 'App\Http\Controllers\ParametreController@recupTousCorbeilleArrondissements')->name('recupAlarrondissement');
+        // AUTRES FIN
+    // GESTION DES ARRONDISSEMENTS FIN
 });
 
 Route::get('/terms', function () {

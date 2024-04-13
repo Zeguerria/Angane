@@ -361,10 +361,10 @@ class ParametreController extends Controller
         public function indexArrondissement(){
             $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('code')->count();
             $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',4)->orderBy('code')->count();
-            $data['provs']= Parametre::where('parent_id','=',1)->orderBy('code')->get();
-            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+            $data['communes']= Parametre::where('type_parametre_id','=',3)->orderBy('libelle')->get();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('libelle')->get();
 
-            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('code')->get();
+            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('parent_id')->get();
             return view("admins.gestions.parametrages.arrondissements.arrondissement")->with($data);
         }
         public function indexCorbeilleArrondissement()
@@ -372,21 +372,22 @@ class ParametreController extends Controller
             //
             $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('code')->count();
             $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',4)->orderBy('code')->count();
-            $data['provs']= Parametre::where('parent_id','=',1)->orderBy('code')->get();
-
             $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+            $data['communes']= Parametre::where('type_parametre_id','=',3)->orderBy('libelle')->get();
+
             $data['parametres']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',4)->orderBy('code')->get();
-            return view('admins.gestions.parametrages.arrondissements.corbeillearrondissements')->with($data);
+            return view('admins.gestions.parametrages.arrondissements.corbeillearrondissement')->with($data);
         }
-        public function storeArrondissment(Request $request)
+        public function storeArrondissement(Request $request)
         {
+
             $code = $request->code;
             $libelle = $request->libelle;
             $desc = $request->desc;
             $desc2 = $request->desc2;
             $desc3 = $request->desc3;
             $parent_id = $request->parent_id;
-            $type_parametre_id=$request->type_parametre_id;
+            $type_parametre_id = $request->type_parametre_id;
             try{
                 Parametre::create([
                     'code'=>$code,
@@ -489,7 +490,7 @@ class ParametreController extends Controller
             }
             return back();
         }
-        public function recupTousCorbeilleArrondissement(Request $request){
+        public function recupTousCorbeilleArrondissements(Request $request){
             $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',4)->orderBy('code')->get();
             try{
                 foreach($parametre as $value){

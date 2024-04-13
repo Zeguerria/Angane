@@ -122,6 +122,12 @@
                             <p >Commune</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./Arrondissements" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Arrondissment</p>
+                            </a>
+                        </li>
 
 
                     </ul>
