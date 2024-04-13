@@ -33,4 +33,17 @@ class Parametre extends Model
     public function type_parametre(){
         return $this->belongsTo(TypeParametre::class, 'type_parametre_id', 'id');
     }
+
+
+    // Relation pour obtenir les communes d'une province
+    public function communes()
+    {
+        return $this->hasMany(Parametre::class, 'parent_id');
+    }
+
+    // Relation pour obtenir la province d'une commune
+    public function province()
+    {
+        return $this->belongsTo(Parametre::class, 'parent_id');
+    }
 }

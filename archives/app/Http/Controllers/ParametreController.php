@@ -356,5 +356,331 @@ class ParametreController extends Controller
             return back();
         }
     // LES PROVINCES FIN
-    // 
+    //
+    // LES ARRONDISSEMENT DEBUT
+        public function indexArrondissement(){
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',4)->orderBy('code')->count();
+            $data['provs']= Parametre::where('parent_id','=',1)->orderBy('code')->get();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+
+            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('code')->get();
+            return view("admins.gestions.parametrages.arrondissements.arrondissement")->with($data);
+        }
+        public function indexCorbeilleArrondissement()
+        {
+            //
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',4)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',4)->orderBy('code')->count();
+            $data['provs']= Parametre::where('parent_id','=',1)->orderBy('code')->get();
+
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+            $data['parametres']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',4)->orderBy('code')->get();
+            return view('admins.gestions.parametrages.arrondissements.corbeillearrondissements')->with($data);
+        }
+        public function storeArrondissment(Request $request)
+        {
+            $code = $request->code;
+            $libelle = $request->libelle;
+            $desc = $request->desc;
+            $desc2 = $request->desc2;
+            $desc3 = $request->desc3;
+            $parent_id = $request->parent_id;
+            $type_parametre_id=$request->type_parametre_id;
+            try{
+                Parametre::create([
+                    'code'=>$code,
+                    'libelle'=>$libelle,
+                    'desc'=>$desc,
+                    'desc2'=>$desc2,
+                    'desc3'=>$desc3,
+                    'parent_id'=>$parent_id,
+                    'type_parametre_id'=>4
+                ]);
+                toast("Arrondissement Ajouté avec succès",'success');
+
+            }
+            catch(Exception $e){
+                toast("Ajout  de l'arrondissement impossible",'danger');
+
+            }
+            return back();
+        }
+
+        public function updateArrondissement(Request $request)
+        {
+
+            $Parametre = Parametre::findOrfail($request->id);
+            $code= isset($request->code)?$request->code:$Parametre->code;
+            $libelle= isset($request->libelle)?$request->libelle:$Parametre->libelle;
+            $desc= isset($request->desc)?$request->desc:$Parametre->desc;
+            $type_parametre_id= isset($request->type_parametre_id)?$request->type_parametre_id:$Parametre->type_parametre_id;
+            $desc2= isset($request->desc2)?$request->desc2:$Parametre->desc2;
+            $desc3= isset($request->desc3)?$request->desc3:$Parametre->desc3;
+            $parent_id= isset($request->parent_id)?$request->parent_id:$Parametre->parent_id;
+            try{
+                $Parametre->update([
+                    'code' => $code,
+                    'libelle' => $libelle,
+                    'desc' => $desc,
+                    'type_parametre_id' => 4,
+                    'desc2' => $desc2,
+                    'desc3' => $desc3,
+                    'parent_id' => $parent_id
+                ]);
+                toast("Arrondissement modifié avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeilleArrondissement(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>1
+                ]);
+                toast('Arrondissement supprimé avec success','success');
+
+            }
+            catch(Exception $e){
+                toast("Supression de l'arrondissement impossible",'danger');
+            }
+            return back();
+        }
+        public function destroyArrondissement(Request $request)
+        {
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->delete();
+                toast("Arrondissement supprimé avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeille_allArrondissement(Request $request){
+            $parametre = Parametre::where('supprimer', 0)->where('type_parametre_id','=',4)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>1
+                    ]);
+                }
+                toast('Arrondissement supprimés avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des arrondissements impossible','danger');
+            }
+            return back();
+        }
+        public function recupUnCorbeilleArrondissement(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>0
+                ]);
+                toast('Arrondissement restauré avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast("Restauration de l'arrondissement impossible",'danger');
+            }
+            return back();
+        }
+        public function recupTousCorbeilleArrondissement(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',4)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>0
+                    ]);
+                }
+                toast('Arrondissements restorées avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast('Restauration des arrondissements impossible','danger');
+            }
+            return back();
+        }
+        public function destroyTousArrondissement(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',4)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->delete();
+                }
+                toast('Supression des arrondissements éffectué avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des arrondissements impossible','danger');
+            }
+            return back();
+        }
+    // LES ARRONDISSEMENT FIN
+
+    // CMMNE DEBT
+        public function indexCommune(){
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',3)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',3)->orderBy('code')->count();
+            $data['provinces']= Parametre::where('parent_id','=',1)->orderBy('libelle')->get();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+
+            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',3)->orderBy('code')->get();
+            return view("admins.gestions.parametrages.communes.commune")->with($data);
+        }
+        public function indexCorbeilleCommune()
+        {
+            //
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',3)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',3)->orderBy('code')->count();
+            $data['provinces']= Parametre::where('parent_id','=',1)->orderBy('libelle')->get();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+
+            $data['parametres'] = Parametre::where('supprimer','=',1)->where('type_parametre_id','=',3)->orderBy('code')->get();
+            return view('admins.gestions.parametrages.communes.corbeillecommune')->with($data);
+        }
+        public function storeCommune(Request $request)
+        {
+            $code = $request->code;
+            $libelle = $request->libelle;
+            $desc = $request->desc;
+            $desc2 = $request->desc2;
+            $desc3 = $request->desc3;
+            $parent_id = $request->parent_id;
+            $type_parametre_id=$request->type_parametre_id;
+            try{
+                Parametre::create([
+                    'code'=>$code,
+                    'libelle'=>$libelle,
+                    'desc'=>$desc,
+                    'desc2'=>$desc2,
+                    'desc3'=>$desc3,
+                    'parent_id'=>$parent_id,
+                    'type_parametre_id'=>3
+                ]);
+                toast("Commune Ajoutée avec succès",'success');
+
+            }
+            catch(Exception $e){
+                toast("Ajout  de la commune impossible",'danger');
+
+            }
+            return back();
+        }
+        public function updateCommune(Request $request)
+        {
+
+            $Parametre = Parametre::findOrfail($request->id);
+            $code= isset($request->code)?$request->code:$Parametre->code;
+            $libelle= isset($request->libelle)?$request->libelle:$Parametre->libelle;
+            $desc= isset($request->desc)?$request->desc:$Parametre->desc;
+            $type_parametre_id= isset($request->type_parametre_id)?$request->type_parametre_id:$Parametre->type_parametre_id;
+            $desc2= isset($request->desc2)?$request->desc2:$Parametre->desc2;
+            $desc3= isset($request->desc3)?$request->desc3:$Parametre->desc3;
+            $parent_id= isset($request->parent_id)?$request->parent_id:$Parametre->parent_id;
+            try{
+                $Parametre->update([
+                    'code' => $code,
+                    'libelle' => $libelle,
+                    'desc' => $desc,
+                    'type_parametre_id' => 3,
+                    'desc2' => $desc2,
+                    'desc3' => $desc3,
+                    'parent_id' => $parent_id
+                ]);
+                toast("Commune modifié avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeilleCommune(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>1
+                ]);
+                toast('Commune supprimée avec success','success');
+
+            }
+            catch(Exception $e){
+                toast("Supression de la commune impossible",'danger');
+            }
+            return back();
+        }
+        public function destroyCommune(Request $request)
+        {
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->delete();
+                toast("Commune supprimée avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeille_allCommune(Request $request){
+            $parametre = Parametre::where('supprimer', 0)->where('type_parametre_id','=',3)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>1
+                    ]);
+                }
+                toast('Communes supprimées avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des communes impossible','danger');
+            }
+            return back();
+        }
+        public function recupUnCorbeilleCommune(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>0
+                ]);
+                toast('Commune restaurée avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast("Restauration de la commune impossible",'danger');
+            }
+            return back();
+        }
+        public function recupTousCorbeilleCommunes(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',3)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>0
+                    ]);
+                }
+                toast('Communes restorées avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast('Restauration des communes impossible','danger');
+            }
+            return back();
+        }
+        public function destroyTousCommune(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',3)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->delete();
+                }
+                toast('Supression des communes éffectué avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des communes impossible','danger');
+            }
+            return back();
+        }
+    // CMMNE FN
 }

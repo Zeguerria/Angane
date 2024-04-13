@@ -111,6 +111,25 @@ Route::middleware([
             Route::get('recupAllprovince', 'App\Http\Controllers\ParametreController@recupTousCorbeilleProvince')->name('recupAlprovince');
         // AUTRES FIN
     // GESTION DES PROVINCES FIN
+
+    // GESTION DES COMMUNES DEBUT
+        // ROUTES DEBUT
+            Route::get('/Communes','App\Http\Controllers\ParametreController@indexCommune')->name('Parametres');
+            Route::get('CommuneCorbeilles', 'App\Http\Controllers\ParametreController@indexCorbeilleCommune');
+        // ROUTES FIN
+        // CREUD DEBUT
+            Route::post('ajouterParametreCommune','App\Http\Controllers\ParametreController@storeCommune')->name('ajouterParametreCommune');
+            Route::post('modifierParametreCommune','App\Http\Controllers\ParametreController@updateCommune')->name('modifierParametreCommune');
+            Route::post('supprimerParametreCommune','App\Http\Controllers\ParametreController@destroyCommune')->name('supprimerParametreCommune');
+        // CREUD FIN
+        // AUTRES DEBUT
+            Route::post('corbeilleParametreCommune', 'App\Http\Controllers\ParametreController@corbeilleCommune')->name('corbeilleParametreCommune');
+            Route::post('recupParametreCommune', 'App\Http\Controllers\ParametreController@recupUnCorbeilleCommune')->name('recupParametreCommune');
+            Route::get('deleteAllcommune', 'App\Http\Controllers\ParametreController@destroyTousCommune')->name('deleteAllcommune');
+            Route::get('corbeilleAllcommune', 'App\Http\Controllers\ParametreController@corbeille_allCommune')->name('corbeilleAllcommune');
+            Route::get('recupAllcommune', 'App\Http\Controllers\ParametreController@recupTousCorbeilleCommunes')->name('recupAlcommune');
+        // AUTRES FIN
+    // GESTION DES COMMUNES FIN
 });
 
 Route::get('/terms', function () {
