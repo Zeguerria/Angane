@@ -148,6 +148,24 @@ Route::middleware([
             Route::get('recupAllarrondissement', 'App\Http\Controllers\ParametreController@recupTousCorbeilleArrondissements')->name('recupAlarrondissement');
         // AUTRES FIN
     // GESTION DES ARRONDISSEMENTS FIN
+    // GESTION DES QUARTIERS DEBUT
+        // ROUTES DEBUT
+            Route::get('/Quartiers','App\Http\Controllers\ParametreController@indexQuartier')->name('Quartiers');
+            Route::get('QuartierCorbeilles', 'App\Http\Controllers\ParametreController@indexCorbeilleQuartier')->name('QuartierCorbeilles');
+        // ROUTES FIN
+        // CREUD DEBUT
+            Route::post('ajouterParametreQuartier','App\Http\Controllers\ParametreController@storeQuartier')->name('ajouterParametreQuartier');
+            Route::post('modifierParametreQuartier','App\Http\Controllers\ParametreController@updateQuartier')->name('modifierParametreQuartier');
+            Route::post('supprimerParametreQuartier','App\Http\Controllers\ParametreController@destroyQuartier')->name('supprimerParametreQuartier');
+        // CREUD FIN
+        // AUTRES DEBUT
+            Route::post('corbeilleParametreQuartier', 'App\Http\Controllers\ParametreController@corbeilleQuartier')->name('corbeilleParametreQuartier');
+            Route::post('recupParametreQuartier', 'App\Http\Controllers\ParametreController@recupTousCorbeilleQuartier')->name('recupParametreQuartier');
+            Route::get('deleteAllquartier', 'App\Http\Controllers\ParametreController@destroyTousQuartier')->name('deleteAllquartier');
+            Route::get('corbeilleAllquartier', 'App\Http\Controllers\ParametreController@corbeille_allQuartier')->name('corbeilleAllquartier');
+            Route::get('recupAllquartier', 'App\Http\Controllers\ParametreController@recupTousCorbeilleQuartier')->name('recupAlquartier');
+        // AUTRES FIN
+    // GESTION DES QUARTIERS FIN
 });
 
 Route::get('/terms', function () {

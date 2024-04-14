@@ -684,4 +684,166 @@ class ParametreController extends Controller
             return back();
         }
     // CMMNE FN
+
+    // QUARTIER DEBUT
+        public function indexQuartier(){
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',5)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',5)->orderBy('code')->count();
+            $data['arrondissements']= Parametre::where('type_parametre_id','=',4)->orderBy('libelle')->get();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('libelle')->get();
+            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',5)->orderBy('parent_id')->get();
+            return view("admins.gestions.parametrages.quartiers.quartier")->with($data);
+        }
+        public function indexCorbeilleQuartier()
+        {
+            //
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',5)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',5)->orderBy('code')->count();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+            $data['arrondissements']= Parametre::where('type_parametre_id','=',4)->orderBy('libelle')->get();
+            $data['parametres']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',5)->orderBy('code')->get();
+            return view('admins.gestions.parametrages.quartiers.corbeillequartier')->with($data);
+        }
+        public function storeQuartier(Request $request)
+        {
+
+            $code = $request->code;
+            $libelle = $request->libelle;
+            $desc = $request->desc;
+            $desc2 = $request->desc2;
+            $desc3 = $request->desc3;
+            $parent_id = $request->parent_id;
+            $type_parametre_id = $request->type_parametre_id;
+            try{
+                Parametre::create([
+                    'code'=>$code,
+                    'libelle'=>$libelle,
+                    'desc'=>$desc,
+                    'desc2'=>$desc2,
+                    'desc3'=>$desc3,
+                    'parent_id'=>$parent_id,
+                    'type_parametre_id'=>5
+                ]);
+                toast("Quartier Ajouté avec succès",'success');
+
+            }
+            catch(Exception $e){
+                toast("Ajout  du quartier impossible",'danger');
+
+            }
+            return back();
+        }
+        public function updateQuartier(Request $request)
+        {
+
+            $Parametre = Parametre::findOrfail($request->id);
+            $code= isset($request->code)?$request->code:$Parametre->code;
+            $libelle= isset($request->libelle)?$request->libelle:$Parametre->libelle;
+            $desc= isset($request->desc)?$request->desc:$Parametre->desc;
+            $type_parametre_id= isset($request->type_parametre_id)?$request->type_parametre_id:$Parametre->type_parametre_id;
+            $desc2= isset($request->desc2)?$request->desc2:$Parametre->desc2;
+            $desc3= isset($request->desc3)?$request->desc3:$Parametre->desc3;
+            $parent_id= isset($request->parent_id)?$request->parent_id:$Parametre->parent_id;
+            try{
+                $Parametre->update([
+                    'code' => $code,
+                    'libelle' => $libelle,
+                    'desc' => $desc,
+                    'type_parametre_id' => 5,
+                    'desc2' => $desc2,
+                    'desc3' => $desc3,
+                    'parent_id' => $parent_id
+                ]);
+                toast("Quartier modifié avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeilleQuartier(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>1
+                ]);
+                toast('Quartier supprimé avec success','success');
+
+            }
+            catch(Exception $e){
+                toast("Supression du quartier impossible",'danger');
+            }
+            return back();
+        }
+        public function destroyQuartier(Request $request)
+        {
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->delete();
+                toast("Quartier supprimé avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeille_allQuartier(Request $request){
+            $parametre = Parametre::where('supprimer', 0)->where('type_parametre_id','=',5)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>1
+                    ]);
+                }
+                toast('Quartiers supprimés avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des quartiers impossible','danger');
+            }
+            return back();
+        }
+        public function recupUnCorbeilleQuartier(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>0
+                ]);
+                toast('Quartier restauré avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast("Restauration du quartier impossible",'danger');
+            }
+            return back();
+        }
+        public function recupTousCorbeilleQuartier(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',5)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>0
+                    ]);
+                }
+                toast('Quartiers restorés avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast('Restauration des quartiers impossible','danger');
+            }
+            return back();
+        }
+        public function destroyTousQuartier(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',5)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->delete();
+                }
+                toast('Supression des quartiers éffectué avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des quartiers impossible','danger');
+            }
+            return back();
+        }
+    // QUARTIER FIN
 }

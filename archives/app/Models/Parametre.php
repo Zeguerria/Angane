@@ -56,4 +56,14 @@ class Parametre extends Model
     {
         return $this->belongsTo(Parametre::class, 'parent_id');
     }
+    //Relation pour obtenir les quartiers de l'arrdondissement
+    public function quartiers()
+    {
+        return $this->hasMany(Parametre::class, 'parent_id');
+    }
+    // Relation pour obtenir l'arrondissement d'un quartier
+    public function arrondissement()
+    {
+        return $this->belongsTo(Parametre::class, 'parent_id');
+    }
 }

@@ -9,7 +9,7 @@
 
 @extends('admins.menus.menu')
 @section('titre')
-Arrondissement
+Quartier
 @endsection
 @section('header')
 @endsection
@@ -19,13 +19,13 @@ Arrondissement
         <div class="content-header pb-5">
             <div class="col-md-12 " style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;" >
                 <div class="title pt-2">
-                    <h4 class="mb-0 bread " style="color:#D9B8F7;"><img src="{{asset('glbal/icon/university.gif')}}" alt="" class="img img-circle " width="50" height="50">&ensp;Arrondissements</h4>
+                    <h4 class="mb-0 bread " style="color:#D9B8F7;"><img src="{{asset('glbal/icon/skyline.gif')}}" alt="" class="img img-circle " width="50" height="50">&ensp;Quartiers</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation" class="d-flex justify-content-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="./dashboard"  style="color: #60528A;">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page" style="color:#D097BF;">Parétrages</li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#FCF2E9;" >Arrondissement</li>
+                        <li class="breadcrumb-item active" aria-current="page" style="color:#FCF2E9;" >Quartier</li>
                     </ol>
                 </nav>
             </div>
@@ -45,13 +45,13 @@ Arrondissement
                                                     <div class="modal-dialog  modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                <h4 class="modal-title fw-bold titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-university"></i></span>&ensp;Ajouter un Arrondissment</h4>
+                                                                <h4 class="modal-title fw-bold titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-university"></i></span>&ensp;Ajouter un Quartier</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body" {{--style="background: #B460B5;"--}}>
-                                                                <form method="post" action="{{ route('ajouterParametreArrondissement') }}" method="POST" enctype="multipart/form-data">
+                                                                <form method="post" action="{{ route('ajouterParametreQuartier') }}" method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div>
                                                                         <div class="row">
@@ -75,10 +75,10 @@ Arrondissement
                                                                             </div>
                                                                             <div class="col-12 col-md-6 col-ml-6 col-lg-6">
                                                                                 <div class="form-group">
-                                                                                    <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Commune :</label>
+                                                                                    <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Arrondissment :</label>
                                                                                     <select class="form-control select2 text-start" name="parent_id" style="width: 100%;">
-                                                                                        @foreach ($communes as $key => $value)
-                                                                                            <option class="text-start" value="{{$value->id}}">{{$value->libelle}}</option>
+                                                                                        @foreach ($arrondissements as $key => $value)
+                                                                                            <option class="text-start" value="{{$value->id}}">{{$value->libelle}} de la commune de {{$value->commune->libelle}}</option>
                                                                                         @endforeach
                                                                                     </select>
                                                                                 </div>
@@ -113,10 +113,9 @@ Arrondissement
                                         </div>
                                         <div class="col-md-9 pt-4 d-flex nav justify-content-end">
                                             <div class="form-group">
-                                                <label for=""><a href="./Arrondissements" class="btn " id="" data-bs-toggle="tooltip" title="total arrondissements" ><i class="fa fa-university" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotal}}</sup></label>
-                                                <label for=""><a href="./ArrondissementCorbeilles" class="btn " id="" data-bs-toggle="tooltip" data-placement="bottom" title="total arrondissements en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotalC}}</sup></label>
+                                                <label for=""><a href="./Quartiers" class="btn " id="" data-bs-toggle="tooltip" title="total quartiers" ><i class="fa fa-map-pin" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotal}}</sup></label>
+                                                <label for=""><a href="./QuartierCorbeilles" class="btn " id="" data-bs-toggle="tooltip" data-placement="bottom" title="total quartiers en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotalC}}</sup></label>
                                             </div>
-
                                             <a href="#" class="btn " id="A" data-bs-toggle="tooltip" title="Option"><i class="fa fa-ellipsis-v" style="color :#D9B8F7; font-size: 20px;"></i></a>
                                         </div>
                                     </div>
@@ -130,6 +129,8 @@ Arrondissement
                                             <th>#</th>
                                             <th>Code</th>
                                             <th>Libelle</th>
+                                            
+                                            <th>Arrondissement</th>
                                             <th>Commune</th>
                                             <th>Description</th>
                                             {{-- <th>Description 1</th>
@@ -146,8 +147,10 @@ Arrondissement
                                                     <td class="text-center"> {{$value->code}}</td>
 
                                                     <td class="text-center">{{$value->libelle}}</td>
-
                                                     <td class="text-center">{{$value->commune->libelle}}</td>
+
+                                                    <td class="text-center">{{$value->arrondissement->commune->libelle}}</td>
+                                                    {{-- <td class="text-center">{{$value->arrondissement->libelle}}</td> --}}
 
                                                     @if($value->desc !=null)
                                                         <td class="text-center">{{$value->desc}}</td>
@@ -183,7 +186,7 @@ Arrondissement
                                                             <div class="modal-dialog  modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-spinner"></i></span>&ensp;Consulter l'arrondissment : {{$value->libelle}}</h4>
+                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-spinner"></i></span>&ensp;Consulter le Quartier : {{$value->libelle}}</h4>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -218,10 +221,10 @@ Arrondissement
                                                                                 </div>
                                                                                 <div class="col-12 col-md-6 col-ml-6 col-lg-6">
                                                                                     <div class="form-group">
-                                                                                        <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Commune :</label>
+                                                                                        <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Arrondissement :</label>
                                                                                         <select class="form-control select2 text-start" disabled name="parent_id" style="width: 100%;">
-                                                                                            @foreach ($communes as $key => $prov)
-                                                                                            <option class="text-start" value="{{$prov->id}}"{{($prov->id==$value->parent_id)?"selected":""}}>{{$prov->libelle}}</option>
+                                                                                            @foreach ($arrondissements as $key => $prov)
+                                                                                            <option class="text-start" value="{{$prov->id}}"{{($prov->id==$value->parent_id)?"selected":""}}>{{$prov->libelle}}de la commune de {{$prov->commune->libelle}}</option>
                                                                                             @endforeach
                                                                                         </select>
                                                                                     </div>
@@ -268,13 +271,13 @@ Arrondissement
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                        <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-chevron-circle-up"></i></span>&ensp;Modifier la Commune : {{$value->libelle}}</h4>
+                                                                        <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-chevron-circle-up"></i></span>&ensp;Modifier le Quartier : {{$value->libelle}}</h4>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body" style="background: var(--c-color2);">
-                                                                        <form method="post" action="{{route('modifierParametreArrondissement')}}">
+                                                                        <form method="post" action="{{route('modifierParametreQuartier')}}">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id" value="{{$value->id}}">
                                                                                 <!--corp du formulaire debut-->
@@ -303,8 +306,8 @@ Arrondissement
                                                                                         <div class="form-group">
                                                                                             <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Commune :</label>
                                                                                             <select class="form-control select2 text-start"  name="parent_id" style="width: 100%;">
-                                                                                                @foreach ($communes as $key => $tpar)
-                                                                                                <option class="text-start" value="{{$tpar->id}}"{{($tpar->id==$value->parent_id)?"selected":""}}>{{$tpar->libelle}}</option>
+                                                                                                @foreach ($arrondissements as $key => $tpar)
+                                                                                                <option class="text-start" value="{{$tpar->id}}"{{($tpar->id==$value->parent_id)?"selected":""}}>{{$tpar->libelle}} de la commune de {{$prov->commune->libelle}}</option>
                                                                                                 @endforeach
                                                                                             </select>
                                                                                         </div>
@@ -349,13 +352,13 @@ Arrondissement
                                                             <div class="modal-dialog modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer l'arrondissement : {{$value->libelle}}</h4>
+                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer le Quartier : {{$value->libelle}}</h4>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body" style="background: var(--c-color2);">
-                                                                    <form method="post" action="{{route('corbeilleParametreArrondissement')}}">
+                                                                    <form method="post" action="{{route('corbeilleParametreQuartier')}}">
                                                                             @csrf
                                                                             <input type="hidden" name="id" value="{{$value->id}}">
                                                                             <!--corp du formulaire debut-->
@@ -387,8 +390,8 @@ Arrondissement
                                                                                         <div class="form-group">
                                                                                             <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Communes :</label>
                                                                                             <select class="form-control select2 text-start" disabled name="parent_id" style="width: 100%;">
-                                                                                                @foreach ($communes as $key => $prov)
-                                                                                                <option class="text-start" value="{{$prov->id}}"{{($prov->id==$value->parent_id)?"selected":""}}>{{$prov->libelle}}</option>
+                                                                                                @foreach ($arrondissements as $key => $prov)
+                                                                                                <option class="text-start" value="{{$prov->id}}"{{($prov->id==$value->parent_id)?"selected":""}}>{{$prov->libelle}} de la commune de {{$prov->commune->libelle}}</option>
                                                                                                 @endforeach
                                                                                             </select>
                                                                                         </div>
@@ -427,86 +430,6 @@ Arrondissement
                                                             </div>
                                                         </div>
                                                         <!--SUPPRIMER-->
-                                                        <div class="modal fade" id="supprimer{{$value->id}}">
-                                                            <div class="modal-dialog modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t2.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                        <h4 class="modal-title fw-bold" style="font-size : 35px; font-weight: 900; color :#D9B8F7; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer le Parametre : {{$value->libelle}}</h4>
-
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body" style="background: var(--c-color2);">
-                                                                        <form method="post" action="{{route('supprimerParametre')}}">
-                                                                            @csrf
-                                                                            <input type="hidden" name="id" value="{{$value->id}}">
-                                                                                <!--corp du formulaire debut-->
-                                                                                <div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-12 col-md-6 col-ml-6 col-lg-6">
-
-                                                                                            <div class="form-group">
-                                                                                                <label class="d-flex" style=" color: var(--color-t); font-family: italic;" for="supprimer{{$value->id}}"><i class="fa fa-commenting msicons" aria-hidden="true"></i>&ensp;Code </label>
-                                                                                                <input type="text" class="form-control" readonly value="{{$value->code}}" id="suprimer{{$value->id}}" name="code" placeholder="Entrer le code">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-6 col-ml-6 col-lg-6">
-
-                                                                                            <div class="form-group">
-                                                                                                <label class="d-flex" style=" color: var(--color-t); font-family: italic;" for="suprimer{{$value->id}}"><i class="fa fa-crosshairs msicons" aria-hidden="true"></i>&ensp;Libelle </label>
-                                                                                                <input type="text" class="form-control" readonly value="{{$value->libelle}}" id="suprimer{{$value->id}}" name="libelle" placeholder="Entrer le libellé">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-6 col-ml-6 col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-comment-alt" aria-hidden="true"></i>&ensp;Description :</label>
-                                                                                                <input type="text" class="form-control" readonly value="{{$value->description}}" id="suprimer{{$value->id}}" name="description" placeholder="Entrer la description">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-6 col-ml-6 col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <label class="d-flex" style="  color: var(--color-t); font-family: italic;"><i class="fas fa-cog"></i>&ensp;Type de Parametre</label>
-                                                                                                <select class="form-control select2 text-start" disabled  name="type_parametre_id" style="width: 100%;">
-                                                                                                    @foreach ($type_parametres as $key => $tpar)
-                                                                                                    <option class="text-start" value="{{$tpar->id}}"{{($tpar->id==$value->type_parametre_id)?"selected":""}}>{{$tpar->libelle}}</option>
-                                                                                                    @endforeach
-                                                                                                </select>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-6 col-ml-6 col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-comment-alt"></i>&ensp;Description 1</label>
-                                                                                                @if($value->desc2 !=null)
-                                                                                                    <textarea class="form-control" disabled name="desc2" value="{{$value->desc2}}">{{$value->desc2}}</textarea>
-                                                                                                @else
-                                                                                                    <textarea class="form-control" disabled name="desc2" value="{{$value->desc2}}">Aucune Description</textarea>
-                                                                                                @endif
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-12 col-md-6 col-ml-6 col-lg-6">
-                                                                                            <div class="form-group">
-                                                                                                <label class="d-flex" style=" color: var(--color-t); font-family: italic;"><i class="fas fa-comment-alt"></i>&ensp;Description 2</label>
-                                                                                                @if($value->desc3 !=null)
-                                                                                                    <textarea class="form-control" disabled name="desc3" value="{{$value->desc3}}">{{$value->desc3}}</textarea>
-                                                                                                @else
-                                                                                                    <textarea class="form-control" disabled name="desc3" value="{{$value->desc3}}">Aucune Description</textarea>
-                                                                                                @endif
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="modal-footer justify-content-between bgnav" style="background-image: url({{asset('glbal/theme/t2.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                                    <button type="button" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-danger btn-round"  data-dismiss="modal" style=" font-family: italic ;color:#D9B8F7;"><i class="fas fa-exclamation-triangle "></i>&ensp;Fermer</button>
-                                                                                    <button type="submit" class="btn mr-md-2 mb-md-0 mb-2 btn-outline-success btn-round" style=" font-family: italic ;color:#D9B8F7;"><i class="fas fa-trash-alt"></i>&ensp;Supprimer et Fermer</button>
-                                                                                </div>
-                                                                        </form>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </tr>
                                             @endforeach
@@ -530,7 +453,7 @@ Arrondissement
                                         <div class="container-fluid pt-2">
                                             <div class="row">
                                                     <div class="col" >
-                                                        <a href="corbeilleAllarrondissement" data-bs-toggle="tooltip" title="Tout Supprimer" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-trash" style="font-size: 20px; color:#ff0000;"></i></a>&emsp;
+                                                        <a href="corbeilleAllquartier" data-bs-toggle="tooltip" title="Tout Supprimer" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-trash" style="font-size: 20px; color:#ff0000;"></i></a>&emsp;
                                                         {{-- <a href="userspdf" data-bs-toggle="tooltip" title="Imprimer" data-placement="bottom" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-print" style="font-size: 20px; color:#0682dab4;"></i></a> --}}
                                                     </div>
                                                 <div class="col d-flex nav justify-content-end">
