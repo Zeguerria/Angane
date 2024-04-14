@@ -846,4 +846,165 @@ class ParametreController extends Controller
             return back();
         }
     // QUARTIER FIN
+    // POSTES DEBUT
+        public function indexPoste(){
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',9)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',9)->orderBy('code')->count();
+            // $data['arrondissements']= Parametre::where('type_parametre_id','=',4)->orderBy('libelle')->get();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('libelle')->get();
+            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',9)->orderBy('libelle')->get();
+            return view("admins.gestions.parametrages.postes.poste")->with($data);
+        }
+        public function indexCorbeillePoste()
+        {
+            //
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',9)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',9)->orderBy('code')->count();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+            // $data['arrondissements']= Parametre::where('type_parametre_id','=',4)->orderBy('libelle')->get();
+            $data['parametres']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',9)->orderBy('libelle')->get();
+            return view('admins.gestions.parametrages.postes.corbeilleposte')->with($data);
+        }
+        public function storePoste(Request $request)
+        {
+
+            $code = $request->code;
+            $libelle = $request->libelle;
+            $desc = $request->desc;
+            $desc2 = $request->desc2;
+            $desc3 = $request->desc3;
+            $parent_id = $request->parent_id;
+            $type_parametre_id = $request->type_parametre_id;
+            try{
+                Parametre::create([
+                    'code'=>$code,
+                    'libelle'=>$libelle,
+                    'desc'=>$desc,
+                    'desc2'=>$desc2,
+                    'desc3'=>$desc3,
+                    'parent_id'=>1,
+                    'type_parametre_id'=>9
+                ]);
+                toast("Poste Ajouté avec succès",'success');
+
+            }
+            catch(Exception $e){
+                toast("Ajout  du poste impossible",'danger');
+
+            }
+            return back();
+        }
+        public function updatePoste(Request $request)
+        {
+
+            $Parametre = Parametre::findOrfail($request->id);
+            $code= isset($request->code)?$request->code:$Parametre->code;
+            $libelle= isset($request->libelle)?$request->libelle:$Parametre->libelle;
+            $desc= isset($request->desc)?$request->desc:$Parametre->desc;
+            $type_parametre_id= isset($request->type_parametre_id)?$request->type_parametre_id:$Parametre->type_parametre_id;
+            $desc2= isset($request->desc2)?$request->desc2:$Parametre->desc2;
+            $desc3= isset($request->desc3)?$request->desc3:$Parametre->desc3;
+            $parent_id= isset($request->parent_id)?$request->parent_id:$Parametre->parent_id;
+            try{
+                $Parametre->update([
+                    'code' => $code,
+                    'libelle' => $libelle,
+                    'desc' => $desc,
+                    'type_parametre_id' => 9,
+                    'desc2' => $desc2,
+                    'desc3' => $desc3,
+                    'parent_id' => 1
+                ]);
+                toast("Poste modifié avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeillePoste(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>1
+                ]);
+                toast('Poste supprimé avec success','success');
+
+            }
+            catch(Exception $e){
+                toast("Supression du poste impossible",'danger');
+            }
+            return back();
+        }
+        public function destroyPoste(Request $request)
+        {
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->delete();
+                toast("Poste supprimé avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeille_allPoste(Request $request){
+            $parametre = Parametre::where('supprimer', 0)->where('type_parametre_id','=',9)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>1
+                    ]);
+                }
+                toast('Postes supprimés avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des postes impossible','danger');
+            }
+            return back();
+        }
+        public function recupUnCorbeillePoste(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>0
+                ]);
+                toast('Poste restauré avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast("Restauration du poste impossible",'danger');
+            }
+            return back();
+        }
+        public function recupTousCorbeillePoste(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',9)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>0
+                    ]);
+                }
+                toast('Postes restorés avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast('Restauration des postes impossible','danger');
+            }
+            return back();
+        }
+        public function destroyTousPoste(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',9)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->delete();
+                }
+                toast('Supression des postes éffectué avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des postes impossible','danger');
+            }
+            return back();
+        }
+    // POSTES FIN
 }
