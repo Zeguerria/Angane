@@ -1007,4 +1007,164 @@ class ParametreController extends Controller
             return back();
         }
     // POSTES FIN
+    // STATUTS DEBUT
+        public function indexStatut(){
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',8)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',8)->orderBy('code')->count();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('libelle')->get();
+            $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',8)->orderBy('libelle')->get();
+            return view("admins.gestions.parametrages.statuts.statut")->with($data);
+        }
+        public function indexCorbeillePStatut()
+        {
+            //
+            $data['ParametreTotal']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',8)->orderBy('code')->count();
+            $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',8)->orderBy('code')->count();
+            $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('code')->get();
+            // $data['arrondissements']= Parametre::where('type_parametre_id','=',4)->orderBy('libelle')->get();
+            $data['parametres']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',8)->orderBy('libelle')->get();
+            return view('admins.gestions.parametrages.statuts.corbeillestatut')->with($data);
+        }
+        public function storeStatut(Request $request)
+        {
+
+            $code = $request->code;
+            $libelle = $request->libelle;
+            $desc = $request->desc;
+            $desc2 = $request->desc2;
+            $desc3 = $request->desc3;
+            $parent_id = $request->parent_id;
+            $type_parametre_id = $request->type_parametre_id;
+            try{
+                Parametre::create([
+                    'code'=>$code,
+                    'libelle'=>$libelle,
+                    'desc'=>$desc,
+                    'desc2'=>$desc2,
+                    'desc3'=>$desc3,
+                    'parent_id'=>1,
+                    'type_parametre_id'=>8
+                ]);
+                toast("Statut Ajouté avec succès",'success');
+
+            }
+            catch(Exception $e){
+                toast("Ajout  du statut impossible",'danger');
+
+            }
+            return back();
+        }
+        public function updateStatut(Request $request)
+        {
+
+            $Parametre = Parametre::findOrfail($request->id);
+            $code= isset($request->code)?$request->code:$Parametre->code;
+            $libelle= isset($request->libelle)?$request->libelle:$Parametre->libelle;
+            $desc= isset($request->desc)?$request->desc:$Parametre->desc;
+            $type_parametre_id= isset($request->type_parametre_id)?$request->type_parametre_id:$Parametre->type_parametre_id;
+            $desc2= isset($request->desc2)?$request->desc2:$Parametre->desc2;
+            $desc3= isset($request->desc3)?$request->desc3:$Parametre->desc3;
+            $parent_id= isset($request->parent_id)?$request->parent_id:$Parametre->parent_id;
+            try{
+                $Parametre->update([
+                    'code' => $code,
+                    'libelle' => $libelle,
+                    'desc' => $desc,
+                    'type_parametre_id' => 8,
+                    'desc2' => $desc2,
+                    'desc3' => $desc3,
+                    'parent_id' => 1
+                ]);
+                toast("Statuts modifié avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeilleStatut(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>1
+                ]);
+                toast('Statut supprimé avec success','success');
+
+            }
+            catch(Exception $e){
+                toast("Supression du statut impossible",'danger');
+            }
+            return back();
+        }
+        public function destroyStatut(Request $request)
+        {
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->delete();
+                toast("Statut supprimé avec succès",'success');
+            }catch(Exception $e){
+                toast("Une ereur est survenue !",'error');
+            }
+            return back();
+        }
+        public function corbeille_allStatut(Request $request){
+            $parametre = Parametre::where('supprimer', 0)->where('type_parametre_id','=',8)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>1
+                    ]);
+                }
+                toast('Statuts supprimés avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des statuts impossible','danger');
+            }
+            return back();
+        }
+        public function recupUnCorbeilleStatut(Request $request){
+            $parametre = Parametre::findOrFail($request->id);
+            try{
+                $parametre->update([
+                    'supprimer' =>0
+                ]);
+                toast('Statut restauré avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast("Restauration du statut impossible",'danger');
+            }
+            return back();
+        }
+        public function recupTousCorbeilleStatut(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',8)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->update([
+                        'supprimer' =>0
+                    ]);
+                }
+                toast('Statuts restorés avec success','primary');
+
+            }
+            catch(Exception $e){
+                toast('Restauration des statuts impossible','danger');
+            }
+            return back();
+        }
+        public function destroyTousStatut(Request $request){
+            $parametre = Parametre::where('supprimer', 1)->where('type_parametre_id','=',8)->orderBy('code')->get();
+            try{
+                foreach($parametre as $value){
+                    $value->delete();
+                }
+                toast('Supression des statuts éffectué avec success','success');
+
+            }
+            catch(Exception $e){
+                toast('Supression des statuts impossible','danger');
+            }
+            return back();
+        }
+    // STATUTS FIN
 }

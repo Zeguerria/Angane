@@ -151,7 +151,7 @@ class ParametreSeeder extends Seeder
 
             // les types
 			["id"=> 116, "code" => "ENTRANT",  "libelle" => "Document Entrant", "desc" => "", "parent_id" => 1, "type_parametre_id" => 10],
-			["id"=> 117, "code" => "ENTRANT",  "libelle" => "Document Sortant", "desc" => "", "parent_id" => 1, "type_parametre_id" => 10],
+			["id"=> 117, "code" => "SORTANT",  "libelle" => "Document Sortant", "desc" => "", "parent_id" => 1, "type_parametre_id" => 10],
 
             // les pays
 			["id"=> 118, "code" => "GABON",  "libelle" => "GABON", "desc" => "", "parent_id" => 1, "type_parametre_id" => 11],

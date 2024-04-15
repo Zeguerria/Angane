@@ -140,6 +140,12 @@
                             <p >Poste</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./Statuts" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Statut</p>
+                            </a>
+                        </li>
 
 
                     </ul>
