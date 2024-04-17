@@ -171,7 +171,7 @@ class ParametreSeeder extends Seeder
 			["id"=> 134, "code" => "PARAMETRES", "libelle" => "Parametres", "desc" => "", "parent_id" => 1, "type_parametre_id" => 14],
 
 
-            // les habillitations
+            // les CATEGORIE
 			["id"=> 135, "code" => "Lettre", "libelle" => "lettre", "desc" => "", "parent_id" => 1, "type_parametre_id" => 15],
 			["id"=> 136, "code" => "DOC-ADMIN", "libelle" => "Document Administratif", "desc" => "", "parent_id" => 1, "type_parametre_id" => 15],
 			["id"=> 137, "code" => "Facture", "libelle" => "Facture", "desc" => "", "parent_id" => 1, "type_parametre_id" => 15],

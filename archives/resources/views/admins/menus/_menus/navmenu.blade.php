@@ -146,6 +146,24 @@
                             <p >Statut</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./Types" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Type</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Payss" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Pays</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Profils" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Profil</p>
+                            </a>
+                        </li>
 
 
                     </ul>
@@ -259,6 +277,54 @@
                             <a href="./ProvinceCorbeilles" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Provinces</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./CommuneCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Commune</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./ArrondissementCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Arrondissment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./QuartierCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Quartier</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./PosteCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Poste</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./StatutCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Statut</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./TypeCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Type</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./PaysCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Pays</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./ProfilCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Profil</p>
                             </a>
                         </li>
                         {{-- <li class="nav-item">
