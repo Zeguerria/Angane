@@ -256,7 +256,6 @@ Route::middleware([
             Route::get('recupAllprofil', 'App\Http\Controllers\ParametreController@recupTousCorbeilleProfil')->name('recupAllprofil');
         // AUTRES FIN
     //GESTTION DES Profil FIN
-    // la
     //GESTTION DES HABILITATIONS DEBUT
         // ROUTES DEBUT
             Route::get('/Habilitations','App\Http\Controllers\ParametreController@indexHabilitation')->name('Habilitations');
@@ -311,6 +310,7 @@ Route::middleware([
             Route::get('recupAllgestionnaire', 'App\Http\Controllers\ParametreController@recupTousCorbeilleGestionnaire')->name('recupAllgestionnaire');
         // AUTRES FIN
     //GESTTION DES GESTIONNAIREs FIN
+    // la
     //GESTTION DES EMMETEURS DEBUT
         // ROUTES DEBUT
             Route::get('/Emmeteurs','App\Http\Controllers\ParametreController@indexEmmeteur')->name('Emmeteurs');

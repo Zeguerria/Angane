@@ -164,6 +164,24 @@
                             <p >Profil</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./Habilitations" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Habilitation</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Categories" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Catégorie</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Gestionnaires" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Gestionnaire</p>
+                            </a>
+                        </li>
 
 
                     </ul>
@@ -327,18 +345,31 @@
                             <p >Profil</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./HabilitationCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Habilitation</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./CategorieCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Catégorie</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./GestionnaireCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Gestionnaire</p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="./produitCorbeille" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Produit</p>
                             </a>
                         </li> --}}
-                        <li class="nav-item">
-                            <a href="./profilCorbeille" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Profil</p>
-                            </a>
-                        </li>
+                        
                         {{-- <li class="nav-item">
                             <a href="./profilhabilitationCorbeille" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
