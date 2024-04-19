@@ -9,7 +9,7 @@
 
 @extends('admins.menus.menu')
 @section('titre')
-Emmeteurs
+Entités
 @endsection
 @section('header')
 @endsection
@@ -19,13 +19,13 @@ Emmeteurs
         <div class="content-header pb-5">
             <div class="col-md-12 " style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;" >
                 <div class="title pt-2">
-                    <h4 class="mb-0 bread " style="color:#D9B8F7;"><img src="{{asset('glbal/icon/shipping.gif')}}" alt="" class="img img-circle " width="50" height="50">&ensp;Emmeteurs</h4>
+                    <h4 class="mb-0 bread " style="color:#D9B8F7;"><img src="{{asset('glbal/icon/blackboard.gif')}}" alt="" class="img img-circle " width="50" height="50">&ensp;Entités</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation" class="d-flex justify-content-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="./dashboard"  style="color: #60528A;">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page" style="color:#D097BF;">Parétrages</li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#FCF2E9;" >Emmeteur</li>
+                        <li class="breadcrumb-item active" aria-current="page" style="color:#FCF2E9;" >Entité</li>
                     </ol>
                 </nav>
             </div>
@@ -45,13 +45,13 @@ Emmeteurs
                                                     <div class="modal-dialog  modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                <h4 class="modal-title fw-bold titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-user"></i></span>&ensp;Ajouter un Emmeteur</h4>
+                                                                <h4 class="modal-title fw-bold titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-user"></i></span>&ensp;Ajouter une Entité</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body" {{--style="background: #B460B5;"--}}>
-                                                                <form method="post" action="{{ route('ajouterParametreEmmeteur') }}" method="POST" enctype="multipart/form-data">
+                                                                <form method="post" action="{{ route('ajouterParametreEntite') }}" method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div>
                                                                         <div class="row">
@@ -113,8 +113,8 @@ Emmeteurs
                                         </div>
                                         <div class="col-md-9 pt-4 d-flex nav justify-content-end">
                                             <div class="form-group">
-                                                <label for=""><a href="./Emmeteurs" class="btn " id="" data-bs-toggle="tooltip" title="total emmeteurs" ><i class="fas fa-user" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotal}}</sup></label>
-                                                <label for=""><a href="./EmmeteurCorbeilles" class="btn " id="" data-bs-toggle="tooltip" data-placement="bottom" title="total emmeteurs en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotalC}}</sup></label>
+                                                <label for=""><a href="./Entites" class="btn " id="" data-bs-toggle="tooltip" title="total entités" ><i class="fas fa-user" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotal}}</sup></label>
+                                                <label for=""><a href="./EntiteCorbeilles" class="btn " id="" data-bs-toggle="tooltip" data-placement="bottom" title="total entités en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotalC}}</sup></label>
                                             </div>
 
                                             <a href="#" class="btn " id="A" data-bs-toggle="tooltip" title="Option"><i class="fa fa-ellipsis-v" style="color :#D9B8F7; font-size: 20px;"></i></a>
@@ -181,7 +181,7 @@ Emmeteurs
                                                             <div class="modal-dialog  modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-spinner"></i></span>&ensp;Consulter l'emmeteur : {{$value->libelle}}</h4>
+                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-spinner"></i></span>&ensp;Consulter l'entité : {{$value->libelle}}</h4>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
@@ -266,13 +266,13 @@ Emmeteurs
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                        <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-chevron-circle-up"></i></span>&ensp;Modifier l'emmeteur : {{$value->libelle}}</h4>
+                                                                        <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-chevron-circle-up"></i></span>&ensp;Modifier l'entité : {{$value->libelle}}</h4>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body" style="background: var(--c-color2);">
-                                                                        <form method="post" action="{{route('modifierParametreEmmeteur')}}">
+                                                                        <form method="post" action="{{route('modifierParametreEntite')}}">
                                                                                 @csrf
                                                                                 <input type="hidden" name="id" value="{{$value->id}}">
                                                                                 <!--corp du formulaire debut-->
@@ -347,13 +347,13 @@ Emmeteurs
                                                             <div class="modal-dialog modal-lg">
                                                             <div class="modal-content">
                                                                 <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer l'emmeteur : {{$value->libelle}}</h4>
+                                                                    <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer l'entité : {{$value->libelle}}</h4>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body" style="background: var(--c-color2);">
-                                                                    <form method="post" action="{{route('corbeilleParametreEmmeteur')}}">
+                                                                    <form method="post" action="{{route('corbeilleParametreEntite')}}">
                                                                             @csrf
                                                                             <input type="hidden" name="id" value="{{$value->id}}">
                                                                             <!--corp du formulaire debut-->
@@ -446,7 +446,7 @@ Emmeteurs
                                         <div class="container-fluid pt-2">
                                             <div class="row">
                                                     <div class="col" >
-                                                        <a href="./corbeilleAllemmeteur" data-bs-toggle="tooltip" title="Tout Supprimer" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-trash" style="font-size: 20px; color:#ff0000;"></i></a>&emsp;
+                                                        <a href="./corbeilleAllentite" data-bs-toggle="tooltip" title="Tout Supprimer" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-trash" style="font-size: 20px; color:#ff0000;"></i></a>&emsp;
                                                         {{-- <a href="userspdf" data-bs-toggle="tooltip" title="Imprimer" data-placement="bottom" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-print" style="font-size: 20px; color:#0682dab4;"></i></a> --}}
                                                     </div>
                                                 <div class="col d-flex nav justify-content-end">

@@ -182,6 +182,30 @@
                             <p >Gestionnaire</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./Emmeteurs" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Emmeteur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Destinataires" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Destinataire</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Receveurs" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Receveur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./Entites" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Entité</p>
+                            </a>
+                        </li>
 
 
                     </ul>
@@ -363,13 +387,37 @@
                             <p >Gestionnaire</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="./EmmeteurCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Emmeteur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./DestinataireCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Destinataire</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./ReceveurCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Receveur</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./EntiteCorbeilles" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p >Entité</p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="./produitCorbeille" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Produit</p>
                             </a>
                         </li> --}}
-                        
+
                         {{-- <li class="nav-item">
                             <a href="./profilhabilitationCorbeille" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>

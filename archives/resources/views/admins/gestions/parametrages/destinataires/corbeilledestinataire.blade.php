@@ -23,7 +23,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="./dashboard"  style="color: #60528A;">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page" style="color:#D097BF; " >Corbeilles</li>
-                        <li class="breadcrumb-item active" aria-current="page"  style="color:#FCF2E9; ">Emmeteur</li>
+                        <li class="breadcrumb-item active" aria-current="page"  style="color:#FCF2E9; ">Destinataire</li>
                     </ol>
                 </nav>
             </div>
@@ -41,8 +41,8 @@
                                         </div>
                                         <div class="col-md-9 pt-4 d-flex nav justify-content-end">
                                             <div class="form-group">
-                                                <label for=""><a href="./Emmeteurs" class="btn " id="" data-bs-toggle="tooltip" title="total emmeteurs" ><i class="fas fa-user" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotal}}</sup></label>
-                                                <label for=""><a href="./EmmeteurCorbeilles" class="btn " id="" data-bs-toggle="tooltip" data-placement="bottom" title="total emmeteurs en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotalC}}</sup></label>
+                                                <label for=""><a href="./Destinataires" class="btn " id="" data-bs-toggle="tooltip" title="total destinataires" ><i class="fas fa-user" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotal}}</sup></label>
+                                                <label for=""><a href="./DestinataireCorbeilles" class="btn " id="" data-bs-toggle="tooltip" data-placement="bottom" title="total destinataires en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ParametreTotalC}}</sup></label>
                                             </div>
 
 
@@ -115,7 +115,7 @@
                                                     <div class="modal-dialog  modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                            <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-spinner"></i></span>&ensp;Consulter l'emmeteur : {{$value->libelle}}</h4>
+                                                            <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-spinner"></i></span>&ensp;Consulter le Destinataire : {{$value->libelle}}</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -200,13 +200,13 @@
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas  fa-retweet"></i></span>&ensp;Restorer l'emmeteur : {{$value->libelle}}</h4>
+                                                                <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas  fa-retweet"></i></span>&ensp;Restorer le Destinataire : {{$value->libelle}}</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body" style="background: var(--c-color2);">
-                                                                <form method="post" action="{{route('recupParametreEmmeteur')}}">
+                                                                <form method="post" action="{{route('recupParametreDestinataire')}}">
                                                                         @csrf
                                                                         <input type="hidden" name="id" value="{{$value->id}}">
                                                                         <!--corp du formulaire debut-->
@@ -283,14 +283,14 @@
                                                     <div class="modal-dialog modal-lg">
                                                         <div class="modal-content">
                                                             <div class="modal-header bgnav" style="background-image: url({{asset('glbal/theme/t7.jpg')}}) ;  background-size: cover; background-repeat: no-repeat;">
-                                                                <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer l'emmeteur : {{$value->libelle}}</h4>
+                                                                <h4 class="modal-title titre-grandiant" style="font-size : 35px; font-weight: 900; "><span><i class="fas fa-trash"></i></span>&ensp;Supprimer le Destinataire : {{$value->libelle}}</h4>
 
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #B460B5;">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body" style="background: var(--c-color2);">
-                                                                <form method="post" action="{{route('supprimerParametreEmmeteur')}}">
+                                                                <form method="post" action="{{route('supprimerParametreDestinataire')}}">
                                                                     @csrf
                                                                     <input type="hidden" name="id" value="{{$value->id}}">
                                                                         <!--corp du formulaire debut-->
@@ -376,8 +376,8 @@
                                         <div class="container-fluid pt-2">
                                             <div class="row">
                                                 <div class="col" >
-                                                    <a href="./deleteAllemmeteur" data-bs-toggle="tooltip" title="Tout Vider" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-trash" style="font-size: 20px; color:#ff0000;"></i></a>&emsp;
-                                                    <a href="./recupAllemmeteur" data-bs-toggle="tooltip" title="Tout Restorer" data-placement="bottom" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fas fa-sync-alt" style="font-size: 20px; color:#3300ff;"></i></a>&emsp;
+                                                    <a href="./deleteAlldestinataire" data-bs-toggle="tooltip" title="Tout Vider" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fa fa-trash" style="font-size: 20px; color:#ff0000;"></i></a>&emsp;
+                                                    <a href="./recupAlldestinataire" data-bs-toggle="tooltip" title="Tout Restorer" data-placement="bottom" class="btn btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code"><i class="fas fa-sync-alt" style="font-size: 20px; color:#3300ff;"></i></a>&emsp;
                                                 </div>
                                                 <div class="col d-flex nav justify-content-end">
                                                     <a href="#basic-table" data-bs-toggle="tooltip" title="fermer" id="T" class="btn btn-sm pull-right" rel="content-y" data-toggle="collapse" role="button"><i class="fa fa-eye-slash" style="font-size: 20px; color:#D9B8F7;"></i></a>

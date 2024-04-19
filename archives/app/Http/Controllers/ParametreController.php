@@ -2293,7 +2293,7 @@ class ParametreController extends Controller
             $data['ParametreTotalC']= Parametre::where('supprimer','=',1)->where('type_parametre_id','=',18)->orderBy('code')->count();
             $data['type_parametres']= TypeParametre::where('supprimer','=',0)->orderBy('libelle')->get();
             $data['parametres'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',18)->orderBy('libelle')->get();
-            return view("admins.gestions.parametrages.estinataires.destinataire")->with($data);
+            return view("admins.gestions.parametrages.destinataires.destinataire")->with($data);
         }
         public function indexCorbeilleDestinataire()
         {
