@@ -50,7 +50,7 @@ Arrondissement
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body" {{--style="background: #B460B5;"--}}>
+                                                            <div class="modal-body my-custom-modal" {{--style="background: #B460B5;"--}}>
                                                                 <form method="post" action="{{ route('ajouterParametreArrondissement') }}" method="POST" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div>
@@ -550,10 +550,6 @@ Arrondissement
  @endsection
  @section('footer')
  @endsection
-
-
-
-
 
 
 

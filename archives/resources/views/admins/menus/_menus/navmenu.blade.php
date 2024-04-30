@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: url({{asset('glbal/theme/t7c.jpg')}}) ; background-position: center; background-size: cover; background-repeat: no-repeat;">
     <!-- Brand Logo -->
-    <a href="./dashboard" class="brand-link">
-      <img src="{{asset('assets/img/dgcpt/logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><strong style="font-size: 1.3em; color :hsl(139, 91%, 22%);">E</strong><label for="" style="color :hsl(139, 91%, 22%);">N</label><label for="" style="color :#cbf900;">GA</label><label for="" style="color :#5300f9;">NE</label></span>
+    <a href="./dashboard" class="brand-link ">
+        <img src="{{asset('assets/img/dgcpt/logo.png')}}" alt="Angane Logo" class="brand-image img-circle elevation-3 nav-link-heart" style="opacity: .8">
+        <span class="brand-text font-weight-light nav-link-heart"><strong style="font-size: 1.3em; color :hsl(139, 91%, 22%);">E</strong><label for="" style="color :hsl(139, 91%, 22%);">N</label><label for="" style="color :#cbf900;">GA</label><label for="" style="color :#5300f9;">NE</label></span>
     </a>
 
     <!-- Sidebar -->
@@ -10,21 +10,30 @@
         @if (Route::has('login'))
             @auth
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
+                @if(Auth::user()->photo !=null)
+                    <div class="image">
+                        <img src="{{asset(Auth::user()->le_profil)}}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                @else
+                    <div class="image">
+                        <img src="{{asset('/glbal/autres/images.png')}}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                @endif
+                {{-- <div class="image">
                   <img src="{{asset(Auth::user()->le_profil)}}" class="img-circle elevation-2" alt="User Image">
-                </div>
+                </div> --}}
                 <div class="info">
-                  <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                  <a href="#" class="d-block nav-link-heart">{{Auth::user()->name}}</a>
                 </div>
               </div>
 
         @else
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              <img src="{{asset('/glbal/autres/images.png')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block">Alexander Pierce</a>
+              <a href="#" class="d-block nav-link-heart">Alexander Pierce</a>
             </div>
           </div>
 
@@ -46,12 +55,29 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="./dashacceuil" class="nav-link nav-link-heart">
+                    <a href="././dashboard" class="nav-link nav-link-heart">
                         <i class="nav-icon fas fa-home msicons"></i>
                         <p class="mesliens">
                             Home
                         </p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link  nav-link-heart">
+                        <i class="nav-icon fas fa-clipboard-list msicons"></i>
+                        <p style="font-size: 20px; color: var(--color-ti); font-family : 'Times New Roman', Times, serif;">
+                            Archives
+                            <i class="fas fa-angle-left right msicons"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./Archives" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Archive</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link nav-link-heart">

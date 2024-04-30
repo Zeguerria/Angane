@@ -66,4 +66,7 @@ class Parametre extends Model
     {
         return $this->belongsTo(Parametre::class, 'parent_id');
     }
+
+    // TEST CHART2 DEBUT
+        
 }

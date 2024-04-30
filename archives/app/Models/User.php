@@ -26,6 +26,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'prenom',
+        'supprimer',
+        'quartier_id',
+        'profil_id',
         'email',
         'photo',
         'password',
@@ -63,5 +67,15 @@ class User extends Authenticatable
     public function getLeProfilAttribute(){
         //recupper la photo
         return Storage::url($this->attributes['photo']);
+    }
+    // RECUPER LE PROFIL DE PARAMETRE
+    public function profil()
+    {
+        return $this->belongsTo(Parametre::class, 'profil_id');
+    }
+    // RECUPER LE QUARTIER DE PARAMETRE
+    public function quartier()
+    {
+        return $this->belongsTo(Parametre::class, 'quartier_id');
     }
 }

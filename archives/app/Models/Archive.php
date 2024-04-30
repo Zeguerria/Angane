@@ -35,6 +35,10 @@ class Archive extends Model
                             'supprimer'
 
     ];
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = date('Y-m-d', strtotime($value));
+    }
 
     public function type(){
         return $this->belongsTo(Parametre::class, 'type_id', 'id');
@@ -123,4 +127,74 @@ class Archive extends Model
         }
         return $icone;
     }
+    // Modèle Archive.php
+
+
+    // MON CODE DEBUT
+        public function getIconAttribute()
+        {
+
+            $extension = pathinfo($this->attributes['fichier'], PATHINFO_EXTENSION);
+
+            switch ($extension) {
+                case 'pdf':
+                    return asset('glbal/autres/iconarchives/pdf.png');
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'gif':
+                    return asset('glbal/autres/iconarchives/picture.png');
+                case 'mp4':
+                case 'avi':
+                case 'mov':
+                    return asset('glbal/autres/iconarchives/content.png');
+                case 'doc':
+                    return asset('glbal/autres/iconarchives/doc.png');
+                case 'txt':
+                    return asset('glbal/autres/iconarchives/txt-file.png');
+                case 'xlsx':
+                    return asset('glbal/autres/iconarchives/xls.png');
+                default:
+                    return asset('glbal/autres/iconarchives/picture.png');
+            }
+        }
+    // MON CODE FIN
+
+//     $icone = '1.png';
+//     $mim = Storage::mimeType($this->attributes['fichier']);
+//     switch ($mim) {
+//         case 'application/pdf':
+//             $icone = '6.png';
+//             break;
+//         case 'application/doc':
+//             $icone = '8.png';
+//             break;
+//         case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+//             $icone = '5.png';
+//             break;
+//         case 'application/xls':
+//             $icone = '5.png';
+//             break;
+//         case 'application/txt':
+//             $icone = '10.png';
+//             break;
+//         case 'image/png':
+//             $icone = '12.png';
+//             break;
+//         case 'image/jpg':
+//             $icone = '12.png';
+//             break;
+//         case 'image/jpeg':
+//             $icone = '12.png';
+//             break;
+
+//         default:
+//             $icone = '1.png';
+//             break;
+//     }
+//     return $icone;
+// }
+
+
+
 }

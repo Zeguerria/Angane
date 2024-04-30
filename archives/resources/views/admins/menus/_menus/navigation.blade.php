@@ -39,16 +39,19 @@
                 @auth
                     <a class="nav-link nav-link-heart" id="profil" href="#" style="font-size: 16px; color: #fff; font-family : 'Arial';">
                         <span class="">
-                            <img src="{{asset(Auth::user()->le_profil)}}" alt="{{asset(Auth::user()->le_profil)}}" class="img img-circle" width="30" height="30">
+                            @if(Auth::user()->photo !=null)
+                                <img src="{{asset(Auth::user()->le_profil)}}" alt="{{asset(Auth::user()->le_profil)}}" class="img img-circle" width="30" height="30">
+                            @else
+                                <img src="{{asset('/glbal/autres/images.png')}}" alt="{{asset('/glbal/autres/images.png')}}" class="img img-circle" width="30" height="30">
+                            @endif
                         </span>
 
                     </a>
                 @else
                     <a class="nav-link" id="profil" href="#" style="font-size: 16px; color: #fff; font-family : 'Arial';">
                         <span class="">
-                            <img src="{{asset('')}}" alt="" class="img img-circle" width="30" height="30">
+                            <img src="{{asset('/glbal/autres/images.png')}}" alt="{{asset('/glbal/autres/images.png')}}" class="img img-circle" width="30" height="30">
                         </span>
-
                     </a>
                 @endauth
             @endif

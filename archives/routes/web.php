@@ -310,7 +310,6 @@ Route::middleware([
             Route::get('recupAllgestionnaire', 'App\Http\Controllers\ParametreController@recupTousCorbeilleGestionnaire')->name('recupAllgestionnaire');
         // AUTRES FIN
     //GESTTION DES GESTIONNAIREs FIN
-    // la
     //GESTTION DES EMMETEURS DEBUT
         // ROUTES DEBUT
             Route::get('/Emmeteurs','App\Http\Controllers\ParametreController@indexEmmeteur')->name('Emmeteurs');
@@ -383,6 +382,28 @@ Route::middleware([
             Route::get('recupAllentite', 'App\Http\Controllers\ParametreController@recupTousCorbeilleEntite')->name('recupAllentite');
         // AUTRES FIN
     //GESTTION DES ENTITES FIN
+    // ARCHIVE DEBUT
+        // ROUTES DEBUT
+            Route::get('/Archives','App\Http\Controllers\ArchiveController@indexArchive')->name('Archives');
+            Route::get('ArchiveCorbeilles', 'App\Http\Controllers\ArchiveController@indexCorbeilleArchive')->name('ArchiveCorbeilles');
+        // ROUTES FIN
+        // CREUD DEBUT
+            Route::post('AjouterArchive','App\Http\Controllers\ArchiveController@storeArchive')->name('AjouterArchive');
+            Route::post('ModifierArchive','App\Http\Controllers\ArchiveController@updateArchive')->name('ModifierArchive');
+            Route::post('SupprimerArchive','App\Http\Controllers\ArchiveController@destroyArchive')->name('SupprimerArchive');
+        // CREUD FIN
+        // AUTRES DEBUT
+            Route::post('CorbeilleArchive', 'App\Http\Controllers\ArchiveController@corbeilleArchive')->name('CorbeilleArchive');
+            Route::post('recupArchive', 'App\Http\Controllers\ArchiveController@recupUnCorbeilleArchive')->name('recupArchive');
+            Route::get('deleteAllarchive', 'App\Http\Controllers\ArchiveController@destroyTousArchive')->name('deleteAllarchive');
+            Route::get('corbeilleAllarchive', 'App\Http\Controllers\ArchiveController@corbeille_allArchive')->name('corbeilleAllarchive');
+            Route::get('recupAllarchive', 'App\Http\Controllers\ArchiveController@recupTousCorbeilleArchive')->name('recupAllarchive');
+        // AUTRES FIN
+
+    // ARCHIVE FIN
+    Route::get('/stats', 'App\Http\Controllers\ArchiveController@stats')->name('stats');
+
+
 
 });
 
