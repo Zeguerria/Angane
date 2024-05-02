@@ -181,6 +181,19 @@ class ArchiveController extends Controller
             // Ajouter le tableau des données du pie chart au tableau de données principal
             $data['pieCategorie'] = $pieCategorie;
         // TENDANCE ARCHIVE PIE CHART DEBUT
+        // TOTEAUX DEBUT
+            $data['gestionnairett'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',16)->orderBy('libelle')->count();
+            $data['emmeteurtt'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',17)->orderBy('libelle')->count();
+            $data['destinatairett'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',18)->orderBy('libelle')->count();
+            $data['recepteurtt'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',19)->orderBy('libelle')->count();
+            $data['administrationtt']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',9)->orderBy('libelle')->count();
+            $data['categoriett'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',15)->orderBy('libelle')->count();
+            $data['archivett']= Archive::where('supprimer','=',0)->count();
+            $data['usertt']= User::where('supprimer','=',0)->count();
+            $data['quartiertt'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',5)->orderBy('libelle')->count();
+            $data['parametrett'] = Parametre::where('supprimer','=',0)->orderBy('libelle')->count();
+        // TOTEAUX FIN
+
 
 
 
@@ -231,17 +244,7 @@ class ArchiveController extends Controller
         // Préparer les données pour la vue
         $data['postes'] = $postes->pluck('libelle')->toArray();
         $data['totaux'] = $totaux;
-        $data['gestionnairett'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',16)->orderBy('libelle')->count();
-        $data['emmeteurtt'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',17)->orderBy('libelle')->count();
-        $data['destinatairett'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',18)->orderBy('libelle')->count();
-        $data['recepteurtt'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',19)->orderBy('libelle')->count();
-        $data['administrationtt']= Parametre::where('supprimer','=',0)->where('type_parametre_id','=',9)->orderBy('libelle')->count();
-        $data['categoriett'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',15)->orderBy('libelle')->count();
-        $data['archivett']= Archive::where('supprimer','=',0)->count();
-        $data['usertt']= User::where('supprimer','=',0)->count();
-        $data['quartiertt'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',5)->orderBy('libelle')->count();
-        $data['parametrett'] = Parametre::where('supprimer','=',0)->orderBy('libelle')->count();
-
+       
 
 
 
@@ -444,7 +447,7 @@ class ArchiveController extends Controller
                 $data['receveurs'] = Parametre::where('type_parametre_id', 19)->orderBy('code')->get();
 
                 $data['archives'] = Archive::where('supprimer', 1)->orderBy('code')->get();
-            return view("admins.gestions.archives.corbeillearchive")->with('data', $data);
+            return view("admins.gestions.archives.corbeillearchive")->with( $data);
         }
         public function  storeArchive(Request $request){
             $type = isset($request->type_fichier)?$request->type_fichier:0;

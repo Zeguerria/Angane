@@ -44,8 +44,6 @@
                                                 <label for=""><a href="./Archives" class="btn nav-link-heart" id="" data-bs-toggle="tooltip" title="total archives" ><i class="fas fa-file-archive" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ArchiveTotal}}</sup></label>
                                                 <label for=""><a href="./ArchiveCorbeilles" class="btn nav-link-heart" id="" data-bs-toggle="tooltip" data-placement="bottom" title="total archives en corbeille"><i class="fa fa-trash msicons" style="color :#D9B8F7; font-size: 20px;"></i></a><sup style="color :#D9B8F7;">{{$ArchiveTotalC}}</sup></label>
                                             </div>
-
-
                                             <a href="#" class="btn " id="A" data-bs-toggle="tooltip" title="Option"><i class="fa fa-ellipsis-v" style="font-size: 20px; color:#D9B8F7;"></i></a>
                                         </div>
                                     </div>

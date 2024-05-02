@@ -401,12 +401,35 @@ Route::middleware([
         // AUTRES FIN
 
     // ARCHIVE FIN
-    Route::get('/stats', 'App\Http\Controllers\ArchiveController@stats')->name('stats');
-
+    // USER DEBUT
+        // ROUTES DEBUT
+            Route::get('/Users','App\Http\Controllers\UserController@indexUser')->name('Users');
+            Route::get('UserCorbeilles', 'App\Http\Controllers\UserController@indexCorbeilleUser')->name('UserCorbeilles');
+        // ROUTES FIN
+        // CREUD DEBUT
+            Route::post('AjouterUser','App\Http\Controllers\UserController@storeUser')->name('AjouterUser');
+            Route::post('ModifierUser','App\Http\Controllers\UserController@updateUser')->name('ModifierUser');
+            Route::post('SupprimerUser','App\Http\Controllers\UserController@destroyUser')->name('SupprimerUser');
+        // CREUD FIN
+        // AUTRES DEBUT
+            Route::post('CorbeilleUser', 'App\Http\Controllers\UserController@corbeilleUser')->name('CorbeilleUser');
+            Route::post('recupUser', 'App\Http\Controllers\UserController@recupUnCorbeilleUser')->name('recupUser');
+            Route::get('deleteAlluser', 'App\Http\Controllers\UserController@destroyTousUser')->name('deleteAlluser');
+            Route::get('corbeilleAlluser', 'App\Http\Controllers\UserController@corbeille_allUser')->name('corbeilleAlluser');
+            Route::get('recupAlluser', 'App\Http\Controllers\UserController@recupTousCorbeilleUser')->name('recupAlluser');
+            // PAGES SUPP DEBUT
+                Route::get('monprofil', 'App\Http\Controllers\UserController@profilAdmin')->name('monprofil');
+                Route::get('aide', 'App\Http\Controllers\UserController@aide')->name('aide');
+            // PAGES SUPP FIN
+        // AUTRES FIN
+    // USER FIN
+    
 
 
 });
-
+// NE DOIT PAS ETRE PRIVE CAR CA ENVOIE LA LISTE DES QUARTIERS DANS LE REGISTER DEBUT
+    Route::get('/register', 'App\Http\Controllers\UserController@create1')->name('register');
+// NE DOIT PAS ETRE PRIVE CAR CA ENVOIE LA LISTE DES QUARTIERS DANS LE REGISTER FIN
 Route::get('/terms', function () {
     return view('terms'); // Assurez-vous d'avoir une vue nommée 'terms.blade.php' pour les termes et conditions
 })->name('terms.show');

@@ -7,9 +7,9 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="./dashboard" class="nav-link  nav-link-heart" style="font-size: 16px; color: #fff; font-family : 'Arial';">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        {{-- <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link  nav-link-heart" style="font-size: 16px; color: #fff; font-family : 'Arial';">Contact</a>
-        </li>
+        </li> --}}
     </ul>
 
     <!-- Right navbar links ui -->
@@ -57,8 +57,8 @@
             @endif
         </li>
         <div class=" mprofil dropdown-menu dropdown-menu-right dropdown-menu-icon-list ">
-            <a class="dropdown-item" href="./profilAdmin" style="color: var(--titre-couleur); font-family: italic;"><i class="fa fa-user msicons"></i>&ensp; Profil</a>
-            <a class="dropdown-item" href="./help" style="color: var(--titre-couleur); font-family: italic;"><i class="fa fa-lightbulb msicons"></i>&ensp;  Help</a>
+            <a class="dropdown-item" href="./monprofil" style="color: var(--titre-couleur); font-family: italic;"><i class="fa fa-user msicons"></i>&ensp; Profil</a>
+            <a class="dropdown-item" href="./aide" style="color: var(--titre-couleur); font-family: italic;"><i class="fa fa-lightbulb msicons"></i>&ensp;  Help</a>
 
             <form action="{{route('logout')}}" method="POST">
                 @csrf

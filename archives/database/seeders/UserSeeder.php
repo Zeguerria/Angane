@@ -22,7 +22,8 @@ class UserSeeder extends Seeder
                 "profil_id" => 131,
                 "quartier_id" => 109,
                 "email" => "admin0@gmail.com",
-                "password" => '$2y$12$NI53UtJbTcE2z92X2k9vP.mYBAW2.DXl6wtOzvQTgl6x8bsAJ8TVu'
+                "password" => '$2y$12$NI53UtJbTcE2z92X2k9vP.mYBAW2.DXl6wtOzvQTgl6x8bsAJ8TVu',
+                "phone"=>"02771212"
             ],
         ]);
     }

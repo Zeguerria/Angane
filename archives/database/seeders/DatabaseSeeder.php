@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeParametreSeeder::class);
         $this->call(ParametreSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ArchiveSeeder::class);
     }
 }

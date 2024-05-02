@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('prenom')->nullable();
             $table->string('photo')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->foreignId('quartier_id')->references('id')->on('parametres')->constrained();
             $table->foreignId('profil_id')->references('id')->on('parametres')->constrained();

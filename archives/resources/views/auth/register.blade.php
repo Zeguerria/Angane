@@ -423,13 +423,34 @@
 						<input type="text" placeholder="First Name" class="form-control">
 						<input type="text" placeholder="Last Name" class="form-control">
 					</div> --}}
-					<div class="form-wrapper">
+					{{-- <div class="form-wrapper">
 						<input type="text" id="id" name="name" placeholder="Username" class="form-control custom-input" required autofocus autocomplete="name">
 						<i class="zmdi zmdi-account"></i>
+					</div> --}}
+                    <div class="form-group">
+						<input type="text" id="name" name="name" placeholder="Nom" class="form-control custom-input" required autofocus autocomplete="name">
+    
+						<input type="text" id="prenom" name="prenom" placeholder="Prénom" class="form-control custom-input"  autofocus autocomplete="prenom">
 					</div>
 					<div class="form-wrapper">
 						<input type="text" type="email" id="email" name="email" placeholder="Email Address" class="form-control" required autocomplete="username">
 						<i class="zmdi zmdi-email"></i>
+					</div>
+                    <div class="form-wrapper">
+						<input type="text" id="phone" name="phone" placeholder="Télephone" class="form-control custom-input">
+						<i class="zmdi zmdi-phone"></i>
+					</div>
+                    <div class="form-wrapper">
+						<select class="form-control" id="quartier_id" name="quartier_id">
+                            <option value="" disabled selected>Choisissez votre quartier</option>
+                            @foreach ($quartiers as $quartier)
+                                <option value="{{ $quartier->id }}">{{ $quartier->libelle }}</option>
+                            @endforeach
+                        </select>
+                        
+                        
+                        
+						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 					</div>
 					{{-- <div class="form-wrapper">
 						<select name="" id="" class="form-control">

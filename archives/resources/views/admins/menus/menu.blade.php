@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/dgcpt/favicon.ico')}}">
     {{-- Animation Scroll --}}
-    <link href="{{ asset('node_modules/aos/dist/aos.css') }}" rel="stylesheet">
+    <link href="{{asset('atres/aos/dist/aos.css')}}" rel="stylesheet">
     <title>ANGANE-@yield('titre')</title>
 
     {{-- MON CSS DEBUT  --}}
@@ -402,28 +402,32 @@
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
         </script>
+        <script src="{{asset('atres/dist/aos.js')}}"></script>
+
         <script>
             $(function () {
+                // Initialiser bsCustomFileInput si nécessaire
                 bsCustomFileInput.init();
-            });
-             //Afficher/Cacher le profil
-            $('.mprofil').hide()
-            $('#profil').on('click', function (){
-            $(".mprofil").fadeToggle();
-            });
-            // Afficher/ccacher le menu
-            $('.sumenu').fadeToggle()
-            $('#A').on('click', function (){
-                $(".sumenu").fadeToggle();
-            });
-            $('#T').on('click', function (){
-                $(".sumenu").fadeToggle();
-            });
-             // Initialiser AOS
-            AOS.init();
 
+                // Cacher les éléments avec la classe 'mprofil' au chargement de la page
+                $('.mprofil').hide();
 
+                // Gérer le clic sur l'élément avec l'ID 'profil'
+                $('#profil').on('click', function (){
+                    $(".mprofil").fadeToggle();
+                });
 
+                // Cacher les éléments avec la classe 'sumenu' au chargement de la page
+                $('.sumenu').hide();
+
+                // Gérer le clic sur les éléments avec les ID 'A' et 'T'
+                $('#A, #T').on('click', function (){
+                    $(".sumenu").fadeToggle();
+                });
+
+                // Initialiser AOS
+                AOS.init();
+            });
         </script>
         {{-- <script>
             $(document).ready(function() {

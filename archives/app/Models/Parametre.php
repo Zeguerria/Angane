@@ -67,6 +67,18 @@ class Parametre extends Model
         return $this->belongsTo(Parametre::class, 'parent_id');
     }
 
-    // TEST CHART2 DEBUT
-        
+    // ENVOYER LA LISTE DES QUARTIER DANS LA VIEW REGISTER DEBUT
+
+
+    public function create()
+    {
+        // Récupérer la liste des quartiers depuis la base de données
+        $quartiers = Parametre::where('supprimer', 0)
+                               ->where('type_parametre_id', 5)
+                               ->get();
+    
+        return view('auth.register', ['quartiers' => $quartiers]);
+    }
+    
+    // ENVOYER LA LISTE DES QUARTIER DANS LA VIEW REGISTER fin
 }
