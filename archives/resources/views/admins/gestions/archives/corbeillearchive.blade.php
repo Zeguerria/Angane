@@ -11,6 +11,7 @@
     Corbeilles
 @endsection
 @section('corps')
+YES
 
 
     <div class="content-wrapper lebody masection pb-5">
@@ -432,13 +433,13 @@
                                                                                                         <input type="date"  class="form-control" name="date_reception" value="{{$value->date_reception}}" readonly id="consulter{{$value->id}}">
                                                                                                     </div>
                                                                                                 </div>
-    
+
                                                                                                 <div class="col-12 col-sm-12 col-md-12 col-ml-12 col-lg-12 ">
                                                                                                     <div class="form-group">
                                                                                                         <div class="icheck-primary d-inline">
                                                                                                             @if($value->type_fichier !='0')
                                                                                                                 <input type="checkbox" id="checkboxPrimary3"  name="type_fichier" checked disabled  id="user2" value="{{$value->type_fichier}}">
-    
+
                                                                                                             @else
                                                                                                                 <input type="checkbox" id="checkboxPrimary3"  name="type_fichier" disabled  id="user2" value="{{$value->type_fichier}}">
                                                                                                             @endif
@@ -446,12 +447,12 @@
                                                                                                                 Document Privé
                                                                                                             </label>
                                                                                                         </div>
-    
+
                                                                                                     </div>
                                                                                                 </div>
-    
-    
-    
+
+
+
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -466,7 +467,7 @@
                                                                                                             </center>
                                                                                                         </a>
                                                                                                     </div>
-    
+
                                                                                                 </div>
                                                                                                 <div class="col-12 col-sm-12 col-md-12 col-ml-12 col-lg-12">
                                                                                                     <div class="form-group">
@@ -484,11 +485,11 @@
                                                                                                         <textarea class="form-control" name="desc" value="{{$value->desc}}" readonly id="consulter{{$value->id}}">{{$value->desc}}</textarea>
                                                                                                     </div>
                                                                                                 </div>
-    
-    
+
+
                                                                                             </div>
                                                                                         </div>
-    
+
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -623,13 +624,13 @@
                                                                                                         <input type="date"  class="form-control" name="date_reception" value="{{$value->date_reception}}" readonly id="consulter{{$value->id}}">
                                                                                                     </div>
                                                                                                 </div>
-    
+
                                                                                                 <div class="col-12 col-sm-12 col-md-12 col-ml-12 col-lg-12 ">
                                                                                                     <div class="form-group">
                                                                                                         <div class="icheck-primary d-inline">
                                                                                                             @if($value->type_fichier !='0')
                                                                                                                 <input type="checkbox" id="checkboxPrimary3"  name="type_fichier" checked disabled  id="user2" value="{{$value->type_fichier}}">
-    
+
                                                                                                             @else
                                                                                                                 <input type="checkbox" id="checkboxPrimary3"  name="type_fichier" disabled  id="user2" value="{{$value->type_fichier}}">
                                                                                                             @endif
@@ -637,12 +638,12 @@
                                                                                                                 Document Privé
                                                                                                             </label>
                                                                                                         </div>
-    
+
                                                                                                     </div>
                                                                                                 </div>
-    
-    
-    
+
+
+
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -657,7 +658,7 @@
                                                                                                             </center>
                                                                                                         </a>
                                                                                                     </div>
-    
+
                                                                                                 </div>
                                                                                                 <div class="col-12 col-sm-12 col-md-12 col-ml-12 col-lg-12">
                                                                                                     <div class="form-group">
@@ -675,11 +676,11 @@
                                                                                                         <textarea class="form-control" name="desc" value="{{$value->desc}}" readonly id="consulter{{$value->id}}">{{$value->desc}}</textarea>
                                                                                                     </div>
                                                                                                 </div>
-    
-    
+
+
                                                                                             </div>
                                                                                         </div>
-    
+
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -731,6 +732,6 @@
     </div>
 
 
- @endsection
- @section('footer')
- @endsection
+@endsection
+@section('footer')
+@endsection

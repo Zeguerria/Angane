@@ -207,21 +207,11 @@ class UserController extends Controller
 
 
     }
-    public function showRegistrationForm()
-    {
-        // Récupérer la liste des quartiers depuis la base de données
-        $data['quartiers'] = Parametre::where('supprimer','=',0)->where('type_parametre_id','=',5)->get();
-    dd($data['quartiers'] );
-        // Passer la liste des quartiers à la vue
-        return view('auth.register', $data);
-    }
+
     public function create1()
 {
     // Récupérer la liste des quartiers depuis la base de données
-    $quartiers = Parametre::where('supprimer', 0)
-                           ->where('type_parametre_id', 5)
-                           ->get();
-
+    $quartiers = Parametre::where('supprimer', 0)->where('type_parametre_id', 5)->get();
     return view('auth.register', ['quartiers' => $quartiers]);
 }
 

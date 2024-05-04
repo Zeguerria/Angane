@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Parametre;
+// use App\Models\Parametre;
 use App\Http\Requests\StoreParametreRequest;
 use App\Http\Requests\UpdateParametreRequest;
 use App\Models\TypeParametre;
 use Exception;
 use Illuminate\Http\Request;
+use App\Models\Parametre;
 
 class ParametreController extends Controller
 {
@@ -380,7 +381,6 @@ class ParametreController extends Controller
         }
         public function storeArrondissement(Request $request)
         {
-
             $code = $request->code;
             $libelle = $request->libelle;
             $desc = $request->desc;
@@ -388,25 +388,25 @@ class ParametreController extends Controller
             $desc3 = $request->desc3;
             $parent_id = $request->parent_id;
             $type_parametre_id = $request->type_parametre_id;
-            try{
+
+            try {
                 Parametre::create([
-                    'code'=>$code,
-                    'libelle'=>$libelle,
-                    'desc'=>$desc,
-                    'desc2'=>$desc2,
-                    'desc3'=>$desc3,
-                    'parent_id'=>$parent_id,
-                    'type_parametre_id'=>4
+                    'code' => $code,
+                    'libelle' => $libelle,
+                    'desc' => $desc,
+                    'desc2' => $desc2,
+                    'desc3' => $desc3,
+                    'parent_id' => $parent_id,
+                    'type_parametre_id' => 4
                 ]);
-                toast("Arrondissement Ajouté avec succès",'success');
-
+                toast("Arrondissement Ajouté avec succès", 'success');
+            } catch (Exception $e) {
+                toast("Ajout de l'arrondissement impossible", 'danger');
             }
-            catch(Exception $e){
-                toast("Ajout  de l'arrondissement impossible",'danger');
 
-            }
             return back();
         }
+
 
         public function updateArrondissement(Request $request)
         {
